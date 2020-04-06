@@ -12,14 +12,17 @@ class GuiManager(object):
     def __init__(self):
         pg.init()
         pg.mixer.init()
-        self.screen = pg.display.set_mode((WIDTH, HEIGHT), pg.RESIZABLE)
-        self.screen_rect = self.screen.get_rect()
+        self.setup_default_screen_size()
         self.key_callbacks = []
         self.draw_callbacks = []
         self._img_cache = {}
         self._sound_cache = {}
         self.font = pg.font.SysFont(None, FONT_SIZE)
         self.clock = pg.time.Clock()
+
+    def setup_default_screen_size(self):
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT), pg.RESIZABLE)
+        self.screen_rect = self.screen.get_rect()
 
     def add_key_callback(self, callback):
         self.key_callbacks.append(callback)
@@ -37,6 +40,7 @@ class GuiManager(object):
         rect = surf.get_rect()
         if adjust_window:
             self.screen = pg.display.set_mode(rect.size, pg.RESIZABLE)
+            self.screen_rect = self.screen.get_rect()
         self.screen.blit(surf, rect)
         pg.display.update()
 
