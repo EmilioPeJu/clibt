@@ -13,6 +13,7 @@ class GuiManager(object):
         pg.init()
         pg.mixer.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT), pg.RESIZABLE)
+        self.screen_rect = self.screen.get_rect()
         self.key_callbacks = []
         self.draw_callbacks = []
         self._img_cache = {}
@@ -46,9 +47,12 @@ class GuiManager(object):
             self._sound_cache[sound_path] = sound
         sound.play()
 
-    def draw_text(self, text):
+    def draw_text(self, text, center=False):
         surf = self.font.render(text, True, FONT_COLOR)
         rect = surf.get_rect()
+        if center:
+            rect.x = self.screen_rect.width // 2 - rect.width // 2
+            rect.y = self.screen_rect.height // 2 - rect.height // 2
         self.screen.blit(surf, rect)
         pg.display.update()
 
