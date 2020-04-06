@@ -11,5 +11,5 @@ setup(
     author_email='hir12111@gmail.com',
     description='',
     entry_points={'console_scripts' :
-        ['seqdig=clibt.seqdig:main']}
+        ['seqdig=clibt.seqdig:main','seqimg=clibt.seqimg:main']}
 )
