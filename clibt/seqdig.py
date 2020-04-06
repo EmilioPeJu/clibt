@@ -3,7 +3,7 @@
 import random
 import signal
 import time
-from clibt.tui import UiManager
+from clibt.tui import TuiManager
 from clibt.utils import (get_random_digits, parse_args_from_func, tick, tock,
                          wait_period)
 
@@ -12,7 +12,7 @@ class SeqDig(object):
     def __init__(self, bpm: int = 150, duration: int = 30, base: int = 2,
                  rows: int = 2, cols: int = 4):
         self.__dict__.update(locals())
-        self.ui = UiManager()
+        self.ui = TuiManager()
         self.lines = []
         self.ui.add_draw_callback(self.draw)
         self.want_quit = False

@@ -7,7 +7,7 @@ from clibt.utils import chunk_string, wait_period
 locale.setlocale(locale.LC_ALL, "")
 
 
-class UiManager:
+class TuiManager:
     def __init__(self):
         self.win = curses.initscr()
 #        curses.start_color()
