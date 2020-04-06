@@ -1,10 +1,12 @@
 #!/usr/bin/env python
-import inspect
-import time
-import random
 import argparse
+import heapq
+import inspect
+import random
+import time
 
 _last_times = [0]*100
+_next_events = []
 
 
 def parse_args_from_func(func):
@@ -52,3 +54,26 @@ def tick(key=0):
 
 def tock(key=0):
     return _time_ms() - _last_times[key]
+
+
+def add_periodic_task(period, callback):
+    next_time = _time_ms() + period
+    heapq.heappush(_next_events, (next_time, callback, period))
+
+
+def process_periodic_tasks(force=False):
+    current_time = _time_ms()
+    try:
+        task_time, task_cb, task_period = \
+            heapq.heappop(_next_events)
+        if task_time <= current_time or force:
+            task_cb()
+            task_time = current_time + task_period
+        heapq.heappush(_next_events, (task_time, task_cb, task_period))
+    except IndexError:
+        pass
+
+
+def clear_periodic_tasks():
+    global _next_events
+    _next_events = []
