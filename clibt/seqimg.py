@@ -41,7 +41,7 @@ class Cards(object):
         try:
             return name.split()[1]
         except IndexError:
-            return 0
+            return "0"
 
     def populate_data(self):
         for name in os.listdir(self.path):
@@ -74,7 +74,7 @@ class Cards(object):
 
 
 class SeqImg(object):
-    def __init__(self, path: str, bpm: int = 30, duration: int = 10):
+    def __init__(self, path: str = '.', bpm: int = 30, duration: int = 10):
         self.__dict__.update(locals())
         self.cards = Cards(path)
         self.ui = GuiManager()
