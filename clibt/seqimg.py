@@ -81,6 +81,7 @@ class SeqImg(object):
         self.ui.add_key_callback(self.on_key_press)
         self.want_quit = False
         signal.signal(signal.SIGINT, self.signal_handle)
+        self.played = False
 
     def on_key_press(self, c):
         if c == '\r':
@@ -99,8 +100,9 @@ class SeqImg(object):
             self.ui.draw_image(self.img)
         else:
             self.ui.setup_default_screen_size()
-        if self.snd:
+        if self.snd and not self.played:
             self.ui.play_sound(self.snd)
+            self.played = True
         self.ui.draw_text(self.name)
         if self.text:
             self.ui.draw_text(self.text, center=True)
@@ -111,6 +113,7 @@ class SeqImg(object):
         self.card_face = self.card_face_keys[self.card_face_index]
         (self.name, self.text, self.img, self.snd) = self.cards.get_face(
             self.card_key, self.card_face)
+        self.played = False
 
     def next_face(self):
         # this assumes that next_card was called

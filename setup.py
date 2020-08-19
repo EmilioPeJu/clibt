@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    install_requires=[],
+    install_requires=[ "pygame" ],
     name='clibt',
     version='0.0.1',
     packages=['clibt'],
