@@ -64,12 +64,14 @@ class TuiManager:
             self.notify_draw()
 
     def add_str_center(self, string, y=0, x=0):
-        mod_y = y
         if isinstance(string, list):
-            mod_y -= len(string) // 2
-        self.add_str(string,
-                     self.ymax // 2 + mod_y,
-                     self.xmax // 2 - len(string) // 2 + x)
+            self.add_str(string,
+                         self.ymax // 2 - len(string) // 2 + y,
+                         self.xmax // 2 - len(string[0]) // 2 + x)
+        else:
+            self.add_str(string,
+                         self.ymax // 2 + y,
+                         self.xmax // 2 - len(string) // 2 + x)
 
     def clear(self):
         self.win.clear()
