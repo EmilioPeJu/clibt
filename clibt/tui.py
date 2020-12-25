@@ -24,6 +24,9 @@ class TuiManager:
     def on_resize(self):
         self.ymax, self.xmax = self.win.getmaxyx()
 
+    def set_half_delay(self, tenths):
+        curses.halfdelay(tenths)
+
     def add_key_callback(self, callback):
         self.key_callbacks.append(callback)
 

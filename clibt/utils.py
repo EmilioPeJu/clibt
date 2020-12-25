@@ -19,7 +19,8 @@ def parse_args_from_func(func):
             else None
         _type = parameter.annotation \
             if parameter.annotation != inspect._empty else None
-        parser.add_argument(f'--{name}', type=_type, default=default)
+        parser.add_argument(f'--{name}', type=_type, default=default,
+                            required=default is None)
     return vars(parser.parse_args())
 
 
