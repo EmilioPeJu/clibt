@@ -29,13 +29,13 @@ class SeqDig(object):
         period_ms = 60000.0 / self.bpm
         duration_ms = self.duration * 1000
         tick()
-
+        wait_period(0)
         while tock() < duration_ms and not self.want_quit:
-            wait_period(period_ms)
             self.lines = [get_random_digits(self.cols, self.base)
                           for _ in range(self.rows)]
             self.ui.process_events()
             self.draw()
+            wait_period(period_ms)
 
         self.ui.quit()
 

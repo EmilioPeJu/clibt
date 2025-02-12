@@ -74,7 +74,7 @@ class GuiManager(object):
     def process_events(self):
         for event in pg.event.get():
             if event.type == pg.KEYDOWN:
-                self.notify_key(chr(event.key))
+                self.notify_key(event.key)
 
     def tick(self):
         self.clock.tick(FPS)

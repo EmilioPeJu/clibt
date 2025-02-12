@@ -60,11 +60,11 @@ class TuiManager:
 
     def process_events(self):
         c = self.win.getch()
-        if c != -1:
-            self.notify_key(c)
         if c == curses.KEY_RESIZE:
             self.on_resize()
             self.notify_draw()
+        if c != -1:
+            self.notify_key(c)
 
     def add_str_center(self, string, y=0, x=0):
         if isinstance(string, list):

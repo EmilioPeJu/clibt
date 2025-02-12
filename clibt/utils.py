@@ -46,7 +46,9 @@ def wait_period(ms, key=1):
     diff_ms = target_time - current_time
     if diff_ms > 0:
         time.sleep(diff_ms / 1000.0)
-    _last_times[key] = current_time
+        _last_times[key] = target_time
+    else:
+        _last_times[key] = current_time
 
 
 def tick(key=0):

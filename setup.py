@@ -13,5 +13,6 @@ setup(
     entry_points={'console_scripts':
                   ['seqdig=clibt.seqdig:main',
                    'seqimg=clibt.seqimg:main',
-                   'seqlist=clibt.seqlist:main']}
+                   'seqlist=clibt.seqlist:main',
+                   'seqtext=clibt.seqtext:main']}
 )

@@ -84,12 +84,12 @@ class SeqImg(object):
         self.played = False
 
     def on_key_press(self, c):
-        if c == '\r':
+        if c == ord('\r'):
             process_periodic_tasks(True)
-        elif c == 'n':
+        elif c == ord('n'):
             self.next_face()
             self.draw()
-        elif c == '\x1b':
+        elif c == 0x1b:
             self.want_quit = True
 
     def signal_handle(self, frame, sig):
